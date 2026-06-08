@@ -630,6 +630,14 @@ textarea {
     padding-top: 12px;
 }
 
+.service-area-heading .eyebrow {
+    margin-bottom: 14px;
+}
+
+.service-area-heading h2 {
+    margin-bottom: 10px;
+}
+
 .map-frame {
     padding: 14px;
 }
@@ -649,6 +657,18 @@ textarea {
     display: grid;
     gap: 12px;
     justify-items: end;
+}
+
+.footer-phone-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .footer-bottom {
@@ -716,15 +736,44 @@ textarea {
 
 .mobile-call-btn {
     gap: 0;
+    animation: mobile-call-float 4s ease-in-out infinite;
 }
 
 .mobile-call-btn .phone-pill-icon {
     margin-right: 12px;
     flex-shrink: 0;
+    animation: phone-wiggle 3.2s ease-in-out infinite;
 }
 
 .mobile-call-label {
     display: inline-block;
+}
+
+@keyframes phone-wiggle {
+    0%, 82%, 100% {
+        transform: rotate(0deg);
+    }
+    86% {
+        transform: rotate(14deg);
+    }
+    90% {
+        transform: rotate(-12deg);
+    }
+    94% {
+        transform: rotate(10deg);
+    }
+    98% {
+        transform: rotate(-8deg);
+    }
+}
+
+@keyframes mobile-call-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
 }
 
 @media (max-width: 900px) {
@@ -779,27 +828,50 @@ textarea {
 
     .header-row {
         gap: 12px;
+        align-items: center;
+        flex-wrap: nowrap;
     }
 
     .phone-pill {
-        padding: 10px 14px;
-        font-size: 0.95rem;
+        padding: 9px 12px;
+        font-size: 0.82rem;
         white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .phone-pill span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cta-row {
+        justify-content: center;
+    }
+
+    .hero-location {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
     }
 
     .mobile-cta {
         display: block;
-        position: sticky;
-        bottom: 0;
-        padding: 12px 14px 14px;
-        background: rgba(255, 255, 255, 0.95);
-        border-top: 1px solid #e5e7eb;
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        padding: 0;
+        background: transparent;
+        border-top: 0;
         text-align: center;
+        z-index: 30;
     }
 
     .mobile-cta .btn {
         width: auto;
         min-width: 0;
+        box-shadow: 0 16px 35px rgba(37, 99, 235, 0.34);
     }
 
     .site-footer {
