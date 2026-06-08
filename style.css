@@ -282,6 +282,25 @@ iframe {
     margin-bottom: 22px;
 }
 
+.hero-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.hero-location-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
 .status-card,
 .quote-card,
 .feature-card,
