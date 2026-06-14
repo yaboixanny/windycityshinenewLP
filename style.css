@@ -221,7 +221,7 @@ iframe {
 }
 
 .hero-copy h1 span {
-    color: #bfdbfe;
+    color: #60a5fa;
 }
 
 .hero-text,
@@ -536,6 +536,11 @@ textarea {
     flex-shrink: 0;
 }
 
+.package-mobile-cta {
+    display: none;
+    margin-top: 22px;
+}
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -732,6 +737,14 @@ textarea {
 
 .mobile-cta {
     display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.mobile-cta.is-visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .mobile-call-btn {
@@ -833,11 +846,16 @@ textarea {
     }
 
     .phone-pill {
-        padding: 9px 12px;
-        font-size: 0.82rem;
+        padding: 9px 10px;
+        font-size: 0.76rem;
         white-space: nowrap;
         flex-shrink: 1;
         min-width: 0;
+        gap: 6px;
+    }
+
+    .call-prefix {
+        display: none;
     }
 
     .phone-pill span {
@@ -853,6 +871,12 @@ textarea {
         justify-content: center;
         text-align: center;
         width: 100%;
+    }
+
+    .package-mobile-cta {
+        display: inline-flex;
+        width: 100%;
+        margin-top: 20px;
     }
 
     .mobile-cta {
@@ -872,6 +896,7 @@ textarea {
         width: auto;
         min-width: 0;
         box-shadow: 0 16px 35px rgba(37, 99, 235, 0.34);
+        white-space: nowrap;
     }
 
     .site-footer {
