@@ -323,6 +323,10 @@
         </div>
     </div>
 
+    <div class="desktop-quote-cta">
+        <a href="#hero-form-top" class="btn btn-primary desktop-quote-btn">Get Quote</a>
+    </div>
+
     <div class="mobile-cta">
         <a href="tel:7606733635" class="btn btn-primary btn-full mobile-call-btn" onclick="gtag('event','conversion',{'send_to':'AW-473251279/h6VQCMuZzcEcEM_71OEB'});">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="phone-pill-icon">
@@ -338,6 +342,7 @@
             const closeButtons = document.querySelectorAll(".close-modal, .close-modal-btn");
             const siteHeader = document.querySelector(".site-header");
             const mobileCta = document.querySelector(".mobile-cta");
+            const desktopQuoteCta = document.querySelector(".desktop-quote-cta");
             const heroFormTop = document.getElementById("hero-form-top");
 
             const syncHeaderState = () => {
@@ -364,16 +369,41 @@
                 }
             };
 
+            const syncDesktopQuoteCta = () => {
+                if (!desktopQuoteCta || !heroFormTop) return;
+                if (window.innerWidth <= 768) {
+                    desktopQuoteCta.classList.remove("is-visible");
+                    return;
+                }
+
+                const formBottom = heroFormTop.getBoundingClientRect().bottom + window.scrollY;
+                if (window.scrollY > formBottom) {
+                    desktopQuoteCta.classList.add("is-visible");
+                } else {
+                    desktopQuoteCta.classList.remove("is-visible");
+                }
+            };
+
             syncHeaderState();
             window.addEventListener("scroll", syncHeaderState, { passive: true });
             syncMobileCta();
+            syncDesktopQuoteCta();
             window.addEventListener("scroll", syncMobileCta, { passive: true });
+            window.addEventListener("scroll", syncDesktopQuoteCta, { passive: true });
             window.addEventListener("resize", syncMobileCta);
+            window.addEventListener("resize", syncDesktopQuoteCta);
 
             document.querySelectorAll("a[href='#quote-form']").forEach((link) => {
                 link.addEventListener("click", (event) => {
                     event.preventDefault();
                     document.getElementById("quote-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+            });
+
+            document.querySelectorAll("a[href='#hero-form-top']").forEach((link) => {
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    heroFormTop?.scrollIntoView({ behavior: "smooth", block: "start" });
                 });
             });
 
